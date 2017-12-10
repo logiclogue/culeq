@@ -4,7 +4,7 @@
 #include "Word.h"
 
 typedef struct MemoryTag Memory;
-struct Memory;
+struct MemoryTag;
 
 Memory memory_new(void);
 void memory_destroy(Memory self);

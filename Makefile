@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -O3 -std=c99 -pedantic
+CFLAGS=-Wall -O3 -std=c99 -pedantic -lSDL2
 DIRBUILD=build
 DIRSRC=src
 SOURCES=$(shell ls $(DIRSRC)/*.c)
