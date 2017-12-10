@@ -15,6 +15,10 @@ Memory memory_new(void) {
     return (Memory){ array, size };
 }
 
+void memory_destroy(Memory self) {
+    free(self.array);
+}
+
 Memory memory_set(Memory self, Word address, Word value) {
     self.array[address] = value;
 
