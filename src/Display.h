@@ -14,5 +14,7 @@ struct DisplayTag {
 
 Display display_new(void);
 void display_destroy(Display self);
+Display display_clear(Display self);
+Display display_draw_square(Display self, int x, int y, int width, int height);
 
 #endif

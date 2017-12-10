@@ -7,6 +7,8 @@ void test(void);
 int main(void) {
     Display display = display_new();
 
+    display = display_draw_square(display, 0, 0, 10, 10);
+
     display_destroy(display);
 
     test();
