@@ -3,7 +3,7 @@ CFLAGS=-Wall -O3 -std=c99 -pedantic
 DIRBUILD=build
 DIRSRC=src
 SOURCES=$(shell ls $(DIRSRC)/*.c)
-EXECUTABLE=$(DIRBUILD)/subleq
+EXECUTABLE=$(DIRBUILD)/culeq
 
 all: $(EXECUTABLE)
 
