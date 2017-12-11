@@ -12,7 +12,6 @@ int main(void) {
     PixelDisplay pd = pixel_display_new(display, 64, 64);
     Memory memory = memory_new();
 
-    pixel_display_draw(pd, 5, 5);
     pixel_display_memory_draw(pd, memory);
 
     display_destroy(display);
