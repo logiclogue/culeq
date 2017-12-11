@@ -1,5 +1,5 @@
 #include <SDL2/SDL.h>
-#include "Display.h"
+#include "display.h"
 
 Display display_new(void) {
     Display self;

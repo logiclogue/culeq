@@ -1,5 +1,5 @@
-#include "PixelDisplay.h"
-#include "Display.h"
+#include "pixel_display.h"
+#include "display.h"
 
 PixelDisplay pixel_display_new(Display display, int width, int height) {
     PixelDisplay self;

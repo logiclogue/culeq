@@ -1,5 +1,5 @@
-#include "Memory.h"
-#include "Word.h"
+#include "memory.h"
+#include "word.h"
 #include <assert.h>
 #include <stdlib.h>
 

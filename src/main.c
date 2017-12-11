@@ -1,7 +1,9 @@
 #include <stdio.h>
-#include "Memory.h"
-#include "Display.h"
-#include "PixelDisplay.h"
+#include "memory.h"
+#include "display.h"
+#include "pixel_display.h"
+#include "pixel_display_memory.h"
+#include "memory.h"
 
 void test(void);
 

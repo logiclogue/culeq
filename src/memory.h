@@ -1,7 +1,7 @@
 #ifndef MEMORY_H
 #define MEMORY_H
 
-#include "Word.h"
+#include "word.h"
 
 typedef struct MemoryTag Memory;
 struct MemoryTag;

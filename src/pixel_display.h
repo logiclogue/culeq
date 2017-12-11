@@ -1,7 +1,7 @@
 #ifndef PIXEL_DISPLAY_H
 #define PIXEL_DISPLAY_H
 
-#include "Display.h"
+#include "display.h"
 
 typedef struct PixelDisplayTag PixelDisplay;
 
