@@ -4,7 +4,11 @@
 #include "word.h"
 
 typedef struct MemoryTag Memory;
-struct MemoryTag;
+
+struct MemoryTag {
+    Word *array;
+    long size;
+};
 
 Memory memory_new(void);
 void memory_destroy(Memory self);

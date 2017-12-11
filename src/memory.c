@@ -3,11 +3,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-struct MemoryTag {
-    Word *array;
-    long size;
-};
-
 Memory memory_new(void) {
     long size = 1 << (sizeof(Word) * 8);
     Word *array = malloc(size * sizeof(Word));
