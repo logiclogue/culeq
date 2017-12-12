@@ -16,5 +16,6 @@ struct PixelDisplayTag {
 PixelDisplay pixel_display_new(Display display, int width, int height);
 void pixel_display_destroy(PixelDisplay self);
 PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y);
+PixelDisplay pixel_display_draw_block(PixelDisplay self, uint16_t b);
 
 #endif

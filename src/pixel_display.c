@@ -1,3 +1,4 @@
+#include <inttypes.h>
 #include "pixel_display.h"
 #include "display.h"
 
@@ -26,4 +27,18 @@ PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y) {
         self.pixel_height);
 
     return self;
+}
+
+PixelDisplay pixel_display_draw_block(PixelDisplay self, uint16_t b) {
+    int x, y, i;
+
+    for (y = 0; y < 4; y += 1) {
+        for (x = 0; x < 4; x += 1) {
+            i = (y * 4) + x;
+            
+            if (b & (0x8000 >> i)) {
+                pixel_display_draw(self, x, y);
+            }
+        }
+    }
 }

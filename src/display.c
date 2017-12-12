@@ -45,7 +45,7 @@ Display display_draw_square(Display self, int x, int y, int width, int height) {
 }
 
 void display_destroy(Display self) {
-    SDL_Delay(5000);
+    SDL_Delay(2000);
     SDL_Quit();
 
     free(self.window);
