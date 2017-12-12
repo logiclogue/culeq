@@ -14,18 +14,11 @@ int main(void) {
     Memory memory = memory_new();
     SpriteMap sprite_map = sprite_map_new(0x4000);
 
-    memory = memory_set(memory, 0x4000, 0x2222);
-    memory = memory_set(memory, 0x4001, 0x2A40);
+    memory = memory_set(memory, 0x4000 + ('J' * 2), 0x2222);
+    memory = memory_set(memory, 0x4001 + ('J' * 2), 0x2A40);
 
     //pixel_display_memory_draw(pd, memory);
-    pixel_display_draw_block(pd,
-        sprite_map_top_block(sprite_map, memory, 0),
-        0,
-        0);
-    pixel_display_draw_block(pd,
-        sprite_map_bottom_block(sprite_map, memory, 0),
-        0,
-        4);
+    pixel_display_draw_char(pd, sprite_map, memory, 'J', 0, 0);
 
     test();
 

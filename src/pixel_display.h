@@ -2,6 +2,8 @@
 #define PIXEL_DISPLAY_H
 
 #include "display.h"
+#include "sprite_map.h"
+#include "memory.h"
 
 typedef struct PixelDisplayTag PixelDisplay;
 
@@ -18,5 +20,7 @@ void pixel_display_destroy(PixelDisplay self);
 PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y);
 PixelDisplay pixel_display_draw_block(
     PixelDisplay self, uint16_t b, int x_offset, int y_offset);
+PixelDisplay pixel_display_draw_char(
+    PixelDisplay self, SpriteMap sprite_map, Memory memory, char c, int x, int y);
 
 #endif
