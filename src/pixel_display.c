@@ -42,4 +42,6 @@ PixelDisplay pixel_display_draw_block(
             }
         }
     }
+
+    return self;
 }

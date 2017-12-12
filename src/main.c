@@ -12,10 +12,20 @@ int main(void) {
     Display display = display_new();
     PixelDisplay pd = pixel_display_new(display, 64, 64);
     Memory memory = memory_new();
+    SpriteMap sprite_map = sprite_map_new(0x4000);
+
+    memory = memory_set(memory, 0x4000, 0x2222);
+    memory = memory_set(memory, 0x4001, 0x2A40);
 
     //pixel_display_memory_draw(pd, memory);
-    pixel_display_draw_block(pd, 0x2222, 0, 0);
-    pixel_display_draw_block(pd, 0x2A40, 0, 4);
+    pixel_display_draw_block(pd,
+        sprite_map_top_block(sprite_map, memory, 0),
+        0,
+        0);
+    pixel_display_draw_block(pd,
+        sprite_map_bottom_block(sprite_map, memory, 0),
+        0,
+        4);
 
     test();
 
