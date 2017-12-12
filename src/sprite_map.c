@@ -20,9 +20,8 @@ Word sprite_map_bottom_block(SpriteMap self, Memory memory, int index) {
 }
 
 void sprite_map_test(void) {
-    Word sprite_memory_address = 0x4000;
     Memory memory = memory_new();
-    SpriteMap sprite_map = sprite_map_new(sprite_memory_address);
+    SpriteMap sprite_map = sprite_map_new(0x4000);
 
     memory = memory_set(memory, 0x4002, 0xFF00);
     memory = memory_set(memory, 0x4003, 0x00FF);
