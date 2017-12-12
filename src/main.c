@@ -13,7 +13,8 @@ int main(void) {
     Memory memory = memory_new();
 
     //pixel_display_memory_draw(pd, memory);
-    pixel_display_draw_block(pd, 0x9096);
+    pixel_display_draw_block(pd, 0x2222, 0, 0);
+    pixel_display_draw_block(pd, 0x2A40, 0, 4);
 
     display_destroy(display);
 

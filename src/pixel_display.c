@@ -29,7 +29,8 @@ PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y) {
     return self;
 }
 
-PixelDisplay pixel_display_draw_block(PixelDisplay self, uint16_t b) {
+PixelDisplay pixel_display_draw_block(
+    PixelDisplay self, uint16_t b, int x_offset, int y_offset) {
     int x, y, i;
 
     for (y = 0; y < 4; y += 1) {
@@ -37,7 +38,7 @@ PixelDisplay pixel_display_draw_block(PixelDisplay self, uint16_t b) {
             i = (y * 4) + x;
             
             if (b & (0x8000 >> i)) {
-                pixel_display_draw(self, x, y);
+                pixel_display_draw(self, x + x_offset, y + y_offset);
             }
         }
     }
