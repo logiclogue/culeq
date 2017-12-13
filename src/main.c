@@ -7,6 +7,7 @@
 #include "sprite_map.h"
 #include "char_map.h"
 #include "memory_map.h"
+#include "word_colour.h"
 
 void test(void);
 
@@ -51,6 +52,7 @@ void test(void) {
     sprite_map_test();
     char_map_test();
     memory_map_test();
+    word_colour_test();
 
     printf("All tests pass :)\n");
 }
