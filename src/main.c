@@ -12,13 +12,16 @@ int main(void) {
     Display display = display_new();
     PixelDisplay pd = pixel_display_new(display, 64, 64);
     Memory memory = memory_new();
-    SpriteMap sprite_map = sprite_map_new(0x4000);
+    SpriteMap sprite_map = sprite_map_new((Word)0x4000);
 
-    memory = memory_set(memory, 0x4000 + ('J' * 2), 0x2222);
-    memory = memory_set(memory, 0x4001 + ('J' * 2), 0x2A40);
+    memory = memory_set(memory, 0x4000 + ('J' * 2), (Word)0x2222);
+    memory = memory_set(memory, 0x4001 + ('J' * 2), (Word)0x2A40);
+    memory = memory_set(memory, 0x4000 + ('o' * 2), (Word)0x0004);
+    memory = memory_set(memory, 0x4001 + ('o' * 2), (Word)0xAA40);
 
     //pixel_display_memory_draw(pd, memory);
     pixel_display_draw_char(pd, sprite_map, memory, 'J', 0, 0);
+    pixel_display_draw_char(pd, sprite_map, memory, 'o', 1, 0);
 
     test();
 

@@ -4,8 +4,8 @@
 Display display_new(void) {
     Display self;
 
-    self.width = 200;
-    self.height = 200;
+    self.width = 400;
+    self.height = 400;
 
     int x = SDL_WINDOWPOS_UNDEFINED;
     int y = SDL_WINDOWPOS_UNDEFINED;
