@@ -11,17 +11,32 @@ void test(void);
 
 int main(void) {
     Display display = display_new();
-    PixelDisplay pd = pixel_display_new(display, 64, 64);
+    PixelDisplay pd = pixel_display_new(display, 64, 48);
     Memory memory = memory_new();
+    CharMap char_map = char_map_new((Word)0x3900, 16, 6);
     SpriteMap sprite_map = sprite_map_new((Word)0x4000);
 
     memory = memory_set(memory, 0x4000 + ('J' * 2), (Word)0x2222);
     memory = memory_set(memory, 0x4001 + ('J' * 2), (Word)0x2A40);
     memory = memory_set(memory, 0x4000 + ('o' * 2), (Word)0x0004);
     memory = memory_set(memory, 0x4001 + ('o' * 2), (Word)0xAA40);
+    memory = memory_set(memory, 0x3900, 'J');
+    memory = memory_set(memory, 0x3901, 'o');
+    memory = memory_set(memory, 0x3902, 'r');
+    memory = memory_set(memory, 0x3903, 'd');
+    memory = memory_set(memory, 0x3904, 'a');
+    memory = memory_set(memory, 0x3905, 'n');
 
-    pixel_display_draw_char(pd, sprite_map, memory, 'J', 0, 0);
-    pixel_display_draw_char(pd, sprite_map, memory, 'o', 1, 0);
+    int x, y;
+    char current_char;
+
+    for (x = 0; x < char_map.width; x += 1) {
+        for (y = 0; y < char_map.height; y += 1) {
+            current_char = char_map_get_char(char_map, memory, x, y);
+
+            pixel_display_draw_char(pd, sprite_map, memory, current_char, x, y);
+        }
+    }
 
     test();
 
