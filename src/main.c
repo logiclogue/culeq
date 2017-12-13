@@ -35,7 +35,7 @@ int main(void) {
 
     for (x = 0; x < char_map.width; x += 1) {
         for (y = 0; y < char_map.height; y += 1) {
-            current_char = char_map_get_char(char_map, memory, x, y);
+            current_char = char_map_get(char_map, memory, x, y);
 
             pixel_display_draw_char(pd, sprite_map, memory, current_char, x, y);
         }
