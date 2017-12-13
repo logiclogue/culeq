@@ -18,6 +18,7 @@ int main(void) {
     Memory memory = memory_new();
     CharMap char_map = char_map_new((Word)0x3900, 16, 6);
     SpriteMap sprite_map = sprite_map_new((Word)0x4000);
+    MemoryMap colour_map = memory_map_new((Word)0x3500);
 
     memory = memory_set(memory, 0x4000 + ('J' * 2), (Word)0x2222);
     memory = memory_set(memory, 0x4001 + ('J' * 2), (Word)0x2A40);
@@ -31,13 +32,21 @@ int main(void) {
     memory = memory_set(memory, 0x3905, 'n');
 
     int x, y;
-    char current_char;
+    Word current_word;
+    int foreground_colour;
 
     for (x = 0; x < char_map.width; x += 1) {
         for (y = 0; y < char_map.height; y += 1) {
-            current_char = char_map_get(char_map, memory, x, y);
+            current_word = char_map_get(char_map, memory, x, y);
+            foreground_colour = memory_map_get(
+                colour_map, memory, word_char_foreground(current_word));
 
-            pixel_display_draw_char(pd, sprite_map, memory, current_char, x, y);
+            pd.display.red = word_colour_red(foreground_colour);
+            pd.display.green = word_colour_green(foreground_colour);
+            pd.display.blue = word_colour_blue(foreground_colour);
+
+            pixel_display_draw_char(
+                pd, sprite_map, memory, word_char(current_word), x, y);
         }
     }
 
