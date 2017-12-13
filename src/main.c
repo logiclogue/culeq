@@ -8,6 +8,7 @@
 #include "char_map.h"
 #include "memory_map.h"
 #include "word_colour.h"
+#include "word_char.h"
 
 void test(void);
 
@@ -53,6 +54,7 @@ void test(void) {
     char_map_test();
     memory_map_test();
     word_colour_test();
+    word_char_test();
 
     printf("All tests pass :)\n");
 }
