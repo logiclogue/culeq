@@ -15,8 +15,8 @@ struct CharMapTag {
 CharMap char_map_new(Word start_address, int width, int height);
 Word char_map_get_word(CharMap self, Memory memory, int x, int y);
 char char_map_get_char(CharMap self, Memory memory, int x, int y);
-int char_map_get_nyble_a(CharMap self, Memory memory, int x, int y);
-int char_map_get_nyble_b(CharMap self, Memory memory, int x, int y);
+int char_map_get_foreground(CharMap self, Memory memory, int x, int y);
+int char_map_get_background(CharMap self, Memory memory, int x, int y);
 void char_map_test(void);
 
 #endif
