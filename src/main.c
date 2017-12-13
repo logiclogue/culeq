@@ -5,6 +5,7 @@
 #include "pixel_display_memory.h"
 #include "memory.h"
 #include "sprite_map.h"
+#include "char_map.h"
 
 void test(void);
 
@@ -19,7 +20,6 @@ int main(void) {
     memory = memory_set(memory, 0x4000 + ('o' * 2), (Word)0x0004);
     memory = memory_set(memory, 0x4001 + ('o' * 2), (Word)0xAA40);
 
-    //pixel_display_memory_draw(pd, memory);
     pixel_display_draw_char(pd, sprite_map, memory, 'J', 0, 0);
     pixel_display_draw_char(pd, sprite_map, memory, 'o', 1, 0);
 
@@ -33,6 +33,7 @@ int main(void) {
 void test(void) {
     memory_test();
     sprite_map_test();
+    char_map_test();
 
     printf("All tests pass :)\n");
 }
