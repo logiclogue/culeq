@@ -6,6 +6,10 @@ Display display_new(void) {
 
     self.width = 400;
     self.height = 400;
+    self.red = 255;
+    self.green = 255;
+    self.blue = 255;
+    self.alpha = 255;
 
     int x = SDL_WINDOWPOS_UNDEFINED;
     int y = SDL_WINDOWPOS_UNDEFINED;
@@ -30,7 +34,12 @@ Display display_clear(Display self) {
 }
 
 Display display_draw_square(Display self, int x, int y, int width, int height) {
-    SDL_SetRenderDrawColor(self.renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(
+        self.renderer,
+        self.red,
+        self.green,
+        self.blue,
+        self.alpha);
 
     SDL_Rect rect;
     rect.x = x;

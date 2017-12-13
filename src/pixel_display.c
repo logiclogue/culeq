@@ -20,7 +20,7 @@ void pixel_display_destroy(PixelDisplay self) {
 }
 
 PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y) {
-    display_draw_square(
+    self.display = display_draw_square(
         self.display,
         x * self.pixel_width,
         y * self.pixel_height,
