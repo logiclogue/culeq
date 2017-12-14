@@ -20,6 +20,14 @@ Memory memory_set(Memory self, Word address, Word value) {
     return self;
 }
 
+Memory memory_load(Memory self, Word address, Word words[], int length) {
+    for (int i = 0; i < length; i += 1) {
+        self = memory_set(self, address + i, words[i]);
+    }
+
+    return self;
+}
+
 Word memory_get(Memory self, Word address) {
     return self.array[address];
 }
@@ -32,4 +40,15 @@ void memory_test(void) {
     memory = memory_set(memory, 400, 42);
 
     assert(memory_get(memory, 400) == 42);
+
+    Word words[] = {
+        0x0011, 0x0123
+    };
+
+    int words_len = 2;
+
+    memory = memory_load(memory, 0x42, words, words_len);
+
+    assert(memory_get(memory, 0x42) == words[0]);
+    assert(memory_get(memory, 0x43) == words[1]);
 }
