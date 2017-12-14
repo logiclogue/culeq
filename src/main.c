@@ -14,9 +14,9 @@ void test(void);
 
 int main(void) {
     Display display = display_new();
-    PixelDisplay pd = pixel_display_new(display, 64, 48);
     Memory memory = memory_new();
-    CharMap char_map = char_map_new((Word)0x3900, 16, 6);
+    CharMap char_map = char_map_new((Word)0x3900, 32, 12);
+    PixelDisplay pd = pixel_display_new(display, char_map.width * 4, char_map.height * 8);
     SpriteMap sprite_map = sprite_map_new((Word)0x4000);
     MemoryMap colour_map = memory_map_new((Word)0x3500);
 
@@ -38,6 +38,14 @@ int main(void) {
     memory = memory_set(memory, 0x3505, (Word)0xFF00);
     memory = memory_set(memory, 0x3506, (Word)0xF0F0);
     memory = memory_set(memory, 0x3507, (Word)0x0FF0);
+    memory = memory_set(memory, 0x3508, (Word)0x0000);
+    memory = memory_set(memory, 0x3509, (Word)0x8880);
+    memory = memory_set(memory, 0x350a, (Word)0x8000);
+    memory = memory_set(memory, 0x350b, (Word)0x0800);
+    memory = memory_set(memory, 0x350c, (Word)0x0080);
+    memory = memory_set(memory, 0x350d, (Word)0x8800);
+    memory = memory_set(memory, 0x350e, (Word)0x8080);
+    memory = memory_set(memory, 0x350f, (Word)0x0880);
 
     int x, y;
     Word current_word;
