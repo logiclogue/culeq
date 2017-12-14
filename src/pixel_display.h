@@ -18,10 +18,13 @@ struct PixelDisplayTag {
 
 PixelDisplay pixel_display_new(Display display, int width, int height);
 void pixel_display_destroy(PixelDisplay self);
+PixelDisplay pixel_display_resize(PixelDisplay self, Display display);
 PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y);
 PixelDisplay pixel_display_draw_block(
     PixelDisplay self, Word b, int x_offset, int y_offset);
 PixelDisplay pixel_display_draw_char(
-    PixelDisplay self, SpriteMap sprite_map, Memory memory, char c, int x, int y);
+    PixelDisplay self, SpriteMap sprite_map, Memory memory,
+    char c, int x, int y,
+    Word foreground_colour, Word background_colour);
 
 #endif

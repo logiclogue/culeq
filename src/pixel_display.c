@@ -3,6 +3,7 @@
 #include "sprite_map.h"
 #include "display.h"
 #include "word.h"
+#include "word_colour.h"
 
 PixelDisplay pixel_display_new(Display display, int width, int height) {
     PixelDisplay self;
@@ -18,6 +19,13 @@ PixelDisplay pixel_display_new(Display display, int width, int height) {
 
 void pixel_display_destroy(PixelDisplay self) {
     display_destroy(self.display);
+}
+
+PixelDisplay pixel_display_resize(PixelDisplay self, Display display) {
+    self.pixel_width = display.width / self.width;
+    self.pixel_height = display.height / self.height;
+
+    return self;
 }
 
 PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y) {
@@ -49,20 +57,23 @@ PixelDisplay pixel_display_draw_block(
 }
 
 PixelDisplay pixel_display_draw_char(
-    PixelDisplay self, SpriteMap sprite_map, Memory memory, char c, int x, int y) {
+    PixelDisplay self, SpriteMap sprite_map, Memory memory,
+    char c, int x, int y,
+    Word foreground_colour, Word background_colour) {
+
     Word sprite_top = sprite_map_top_block(sprite_map, memory, c);
     Word sprite_bottom = sprite_map_bottom_block(sprite_map, memory, c);
 
-    self.display.red = 0;
-    self.display.green = 255;
-    self.display.blue = 0;
+    self.display.red = word_colour_red(foreground_colour);
+    self.display.green = word_colour_green(foreground_colour);
+    self.display.blue = word_colour_blue(foreground_colour);
 
     pixel_display_draw_block(self, sprite_top, x * 4, y * 8);
     pixel_display_draw_block(self, sprite_bottom, x * 4, (y * 8) + 4);
 
-    self.display.red = 0;
-    self.display.green = 0;
-    self.display.blue = 255;
+    self.display.red = word_colour_red(background_colour);
+    self.display.green = word_colour_green(background_colour);
+    self.display.blue = word_colour_blue(background_colour);
 
     pixel_display_draw_block(self, ~sprite_top, x * 4, y * 8);
     pixel_display_draw_block(self, ~sprite_bottom, x * 4, (y * 8) + 4);

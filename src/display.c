@@ -48,13 +48,17 @@ Display display_draw_square(Display self, int x, int y, int width, int height) {
     rect.h = height;
 
     SDL_RenderFillRect(self.renderer, &rect);
-    SDL_UpdateWindowSurface(self.window);
     
     return self;
 }
 
+Display display_update(Display self) {
+    SDL_UpdateWindowSurface(self.window);
+
+    return self;
+}
+
 void display_destroy(Display self) {
-    SDL_Delay(2000);
     SDL_Quit();
 
     free(self.window);

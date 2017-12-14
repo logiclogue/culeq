@@ -33,24 +33,38 @@ int main(void) {
 
     int x, y;
     Word current_word;
-    int foreground_colour;
-
-    for (x = 0; x < char_map.width; x += 1) {
-        for (y = 0; y < char_map.height; y += 1) {
-            current_word = char_map_get(char_map, memory, x, y);
-            foreground_colour = memory_map_get(
-                colour_map, memory, word_char_foreground(current_word));
-
-            pd.display.red = word_colour_red(foreground_colour);
-            pd.display.green = word_colour_green(foreground_colour);
-            pd.display.blue = word_colour_blue(foreground_colour);
-
-            pixel_display_draw_char(
-                pd, sprite_map, memory, word_char(current_word), x, y);
-        }
-    }
+    int foreground_colour, background_colour;
 
     test();
+
+    SDL_Event e;
+
+    for (;;) {
+        SDL_PollEvent(&e);
+
+        if (e.type == SDL_QUIT) {
+            break;
+        } else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED) {
+            printf("RESIZE\n");
+        } else {
+            for (x = 0; x < char_map.width; x += 1) {
+                for (y = 0; y < char_map.height; y += 1) {
+                    current_word = char_map_get(char_map, memory, x, y);
+                    foreground_colour = memory_map_get(
+                        colour_map, memory, word_char_foreground(current_word));
+                    background_colour = memory_map_get(
+                        colour_map, memory, word_char_background(current_word));
+
+                    pixel_display_draw_char(
+                        pd, sprite_map, memory,
+                        word_char(current_word), x, y,
+                        foreground_colour, background_colour);
+                }
+            }
+
+            display_update(pd.display);
+        }
+    }
 
     display_destroy(display);
 
