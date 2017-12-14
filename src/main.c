@@ -24,12 +24,20 @@ int main(void) {
     memory = memory_set(memory, 0x4001 + ('J' * 2), (Word)0x2A40);
     memory = memory_set(memory, 0x4000 + ('o' * 2), (Word)0x0004);
     memory = memory_set(memory, 0x4001 + ('o' * 2), (Word)0xAA40);
-    memory = memory_set(memory, 0x3900, 'J');
-    memory = memory_set(memory, 0x3901, 'o');
-    memory = memory_set(memory, 0x3902, 'r');
-    memory = memory_set(memory, 0x3903, 'd');
-    memory = memory_set(memory, 0x3904, 'a');
-    memory = memory_set(memory, 0x3905, 'n');
+    memory = memory_set(memory, 0x3900, 0x1600 + 'J');
+    memory = memory_set(memory, 0x3901, 0x1600 + 'o');
+    memory = memory_set(memory, 0x3902, 0x1600 + 'r');
+    memory = memory_set(memory, 0x3903, 0x1600 + 'd');
+    memory = memory_set(memory, 0x3904, 0x1600 + 'a');
+    memory = memory_set(memory, 0x3905, 0x1600 + 'n');
+    memory = memory_set(memory, 0x3500, (Word)0x0000);
+    memory = memory_set(memory, 0x3501, (Word)0xFFF0);
+    memory = memory_set(memory, 0x3502, (Word)0xF000);
+    memory = memory_set(memory, 0x3503, (Word)0x0F00);
+    memory = memory_set(memory, 0x3504, (Word)0x00F0);
+    memory = memory_set(memory, 0x3505, (Word)0xFF00);
+    memory = memory_set(memory, 0x3506, (Word)0xF0F0);
+    memory = memory_set(memory, 0x3507, (Word)0x0FF0);
 
     int x, y;
     Word current_word;
@@ -44,7 +52,9 @@ int main(void) {
 
         if (e.type == SDL_QUIT) {
             break;
-        } else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED) {
+        } else if (e.type == SDL_WINDOWEVENT
+            && e.window.event == SDL_WINDOWEVENT_RESIZED) {
+
             printf("RESIZE\n");
         } else {
             for (x = 0; x < char_map.width; x += 1) {
