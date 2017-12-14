@@ -34,9 +34,8 @@ PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y) {
 PixelDisplay pixel_display_draw_block(
     PixelDisplay self, Word b, int x_offset, int y_offset) {
     int x, y, i;
-    int block_height = WORD_BYTES * 2;
 
-    for (y = 0; y < block_height; y += 1) {
+    for (y = 0; y < WORD_NYBLES; y += 1) {
         for (x = 0; x < 4; x += 1) {
             i = (y * 4) + x;
             
@@ -54,8 +53,19 @@ PixelDisplay pixel_display_draw_char(
     Word sprite_top = sprite_map_top_block(sprite_map, memory, c);
     Word sprite_bottom = sprite_map_bottom_block(sprite_map, memory, c);
 
+    self.display.red = 0;
+    self.display.green = 255;
+    self.display.blue = 0;
+
     pixel_display_draw_block(self, sprite_top, x * 4, y * 8);
     pixel_display_draw_block(self, sprite_bottom, x * 4, (y * 8) + 4);
+
+    self.display.red = 0;
+    self.display.green = 0;
+    self.display.blue = 255;
+
+    pixel_display_draw_block(self, ~sprite_top, x * 4, y * 8);
+    pixel_display_draw_block(self, ~sprite_bottom, x * 4, (y * 8) + 4);
 
     return self;
 }
