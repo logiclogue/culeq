@@ -58,6 +58,8 @@ int main(void) {
     int x, y;
     Word current_word;
     int foreground_colour, background_colour;
+    Word program_counter = 0x1000;
+    Word a, b, c;
 
     test();
 
@@ -65,6 +67,20 @@ int main(void) {
 
     for (;;) {
         SDL_PollEvent(&e);
+
+        a = memory_get(memory, program_counter);
+        b = memory_get(memory, program_counter + 1);
+        c = memory_get(memory, program_counter + 2);
+
+        memory = memory_set(memory, b, memory_get(memory, b) - memory_get(memory, a));
+
+        printf("%p\n", (unsigned int)program_counter);
+
+        if (memory_get(memory, b) > 0) {
+            program_counter += 3;
+        } else {
+            program_counter = c;
+        }
 
         if (e.type == SDL_QUIT) {
             break;
