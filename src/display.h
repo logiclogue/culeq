@@ -18,6 +18,7 @@ struct DisplayTag {
 
 Display display_new(void);
 void display_destroy(Display self);
+Display display_resize(Display self, int width, int height);
 Display display_clear(Display self);
 Display display_update(Display self);
 Display display_set_draw_colour(Display self, int r, int g, int b, int a);

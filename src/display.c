@@ -13,14 +13,27 @@ Display display_new(void) {
 
     int x = SDL_WINDOWPOS_UNDEFINED;
     int y = SDL_WINDOWPOS_UNDEFINED;
+    unsigned int flags = SDL_WINDOW_RESIZABLE;
 
-    self.window = SDL_CreateWindow("Culeq", x, y, self.width, self.height, 0);
+    self.window = SDL_CreateWindow(
+        "Culeq", x, y, self.width, self.height, flags);
+
+    self = display_resize(self, self.width, self.height);
+
+    display_clear(self);
+
+    return self;
+}
+
+Display display_resize(Display self, int width, int height) {
+    self.width = width;
+    self.height = height;
+
+    SDL_DestroyRenderer(self.renderer);
 
     SDL_Surface *surface = SDL_GetWindowSurface(self.window);
 
     self.renderer = SDL_CreateSoftwareRenderer(surface);
-
-    display_clear(self);
 
     return self;
 }

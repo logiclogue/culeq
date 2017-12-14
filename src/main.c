@@ -55,10 +55,9 @@ int main(void) {
         } else if (e.type == SDL_WINDOWEVENT
             && e.window.event == SDL_WINDOWEVENT_RESIZED) {
 
-            display.width = e.window.data1;
-            display.height = e.window.data2;
-
-            pd = pixel_display_resize(pd, display);
+            pd.display = display_resize(
+                pd.display, e.window.data1, e.window.data2);
+            pd = pixel_display_resize(pd, pd.display);
         }
 
         for (x = 0; x < char_map.width; x += 1) {
