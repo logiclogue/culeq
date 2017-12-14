@@ -1,0 +1,25 @@
+#ifndef COLOURS_BIN_H
+#define COLOURS_BIN_H
+
+uint16_t colours_bin[] = {
+    0x0000,
+    0xFFF0,
+    0xF000,
+    0x0F00,
+    0x00F0,
+    0xFF00,
+    0xF0F0,
+    0x0FF0,
+    0x0000,
+    0x8880,
+    0x8000,
+    0x0800,
+    0x0080,
+    0x8800,
+    0x8080,
+    0x0880
+};
+
+unsigned int colours_bin_len = 128;
+
+#endif

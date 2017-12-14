@@ -9,6 +9,7 @@
 #include "memory_map.h"
 #include "word_colour.h"
 #include "word_char.h"
+#include "colours_bin.h"
 
 void test(void);
 
@@ -73,8 +74,6 @@ int main(void) {
         c = memory_get(memory, program_counter + 2);
 
         memory = memory_set(memory, b, memory_get(memory, b) - memory_get(memory, a));
-
-        printf("%p\n", (unsigned int)program_counter);
 
         if (memory_get(memory, b) > 0) {
             program_counter += 3;
