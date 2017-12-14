@@ -4,6 +4,7 @@
 #include "display.h"
 #include "sprite_map.h"
 #include "memory.h"
+#include "word.h"
 
 typedef struct PixelDisplayTag PixelDisplay;
 
@@ -19,7 +20,7 @@ PixelDisplay pixel_display_new(Display display, int width, int height);
 void pixel_display_destroy(PixelDisplay self);
 PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y);
 PixelDisplay pixel_display_draw_block(
-    PixelDisplay self, uint16_t b, int x_offset, int y_offset);
+    PixelDisplay self, Word b, int x_offset, int y_offset);
 PixelDisplay pixel_display_draw_char(
     PixelDisplay self, SpriteMap sprite_map, Memory memory, char c, int x, int y);
 

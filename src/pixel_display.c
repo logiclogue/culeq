@@ -2,6 +2,7 @@
 #include "pixel_display.h"
 #include "sprite_map.h"
 #include "display.h"
+#include "word.h"
 
 PixelDisplay pixel_display_new(Display display, int width, int height) {
     PixelDisplay self;
@@ -31,10 +32,11 @@ PixelDisplay pixel_display_draw(PixelDisplay self, int x, int y) {
 }
 
 PixelDisplay pixel_display_draw_block(
-    PixelDisplay self, uint16_t b, int x_offset, int y_offset) {
+    PixelDisplay self, Word b, int x_offset, int y_offset) {
     int x, y, i;
+    int block_height = WORD_BYTES * 2;
 
-    for (y = 0; y < 4; y += 1) {
+    for (y = 0; y < block_height; y += 1) {
         for (x = 0; x < 4; x += 1) {
             i = (y * 4) + x;
             
