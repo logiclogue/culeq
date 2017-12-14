@@ -55,25 +55,28 @@ int main(void) {
         } else if (e.type == SDL_WINDOWEVENT
             && e.window.event == SDL_WINDOWEVENT_RESIZED) {
 
-            printf("RESIZE\n");
-        } else {
-            for (x = 0; x < char_map.width; x += 1) {
-                for (y = 0; y < char_map.height; y += 1) {
-                    current_word = char_map_get(char_map, memory, x, y);
-                    foreground_colour = memory_map_get(
-                        colour_map, memory, word_char_foreground(current_word));
-                    background_colour = memory_map_get(
-                        colour_map, memory, word_char_background(current_word));
+            display.width = e.window.data1;
+            display.height = e.window.data2;
 
-                    pixel_display_draw_char(
-                        pd, sprite_map, memory,
-                        word_char(current_word), x, y,
-                        foreground_colour, background_colour);
-                }
-            }
-
-            display_update(pd.display);
+            pd = pixel_display_resize(pd, display);
         }
+
+        for (x = 0; x < char_map.width; x += 1) {
+            for (y = 0; y < char_map.height; y += 1) {
+                current_word = char_map_get(char_map, memory, x, y);
+                foreground_colour = memory_map_get(
+                    colour_map, memory, word_char_foreground(current_word));
+                background_colour = memory_map_get(
+                    colour_map, memory, word_char_background(current_word));
+
+                pd = pixel_display_draw_char(
+                    pd, sprite_map, memory,
+                    word_char(current_word), x, y,
+                    foreground_colour, background_colour);
+            }
+        }
+
+        pd.display = display_update(pd.display);
     }
 
     display_destroy(display);
