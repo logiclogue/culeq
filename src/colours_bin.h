@@ -20,6 +20,6 @@ uint16_t colours_bin[] = {
     0x0880
 };
 
-unsigned int colours_bin_len = 128;
+unsigned int colours_bin_len = 16;
 
 #endif
