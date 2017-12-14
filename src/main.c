@@ -39,22 +39,9 @@ int main(void) {
     memory = memory_set(memory, 0x3903, 0x1600 + 'd');
     memory = memory_set(memory, 0x3904, 0x1600 + 'a');
     memory = memory_set(memory, 0x3905, 0x1600 + 'n');
-    memory = memory_set(memory, 0x3500, (Word)0x0000);
-    memory = memory_set(memory, 0x3501, (Word)0xFFF0);
-    memory = memory_set(memory, 0x3502, (Word)0xF000);
-    memory = memory_set(memory, 0x3503, (Word)0x0F00);
-    memory = memory_set(memory, 0x3504, (Word)0x00F0);
-    memory = memory_set(memory, 0x3505, (Word)0xFF00);
-    memory = memory_set(memory, 0x3506, (Word)0xF0F0);
-    memory = memory_set(memory, 0x3507, (Word)0x0FF0);
-    memory = memory_set(memory, 0x3508, (Word)0x0000);
-    memory = memory_set(memory, 0x3509, (Word)0x8880);
-    memory = memory_set(memory, 0x350a, (Word)0x8000);
-    memory = memory_set(memory, 0x350b, (Word)0x0800);
-    memory = memory_set(memory, 0x350c, (Word)0x0080);
-    memory = memory_set(memory, 0x350d, (Word)0x8800);
-    memory = memory_set(memory, 0x350e, (Word)0x8080);
-    memory = memory_set(memory, 0x350f, (Word)0x0880);
+    memory = memory_load(
+        memory, colour_map.start_address,
+        (Word *)colours_bin, colours_bin_len);
 
     int x, y;
     Word current_word;
