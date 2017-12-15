@@ -11,6 +11,7 @@
 #include "word_char.h"
 #include "colours_bin.h"
 #include "sprites_bin.h"
+#include "test_screen_bin.h"
 
 void test(void);
 
@@ -34,6 +35,10 @@ int main(void) {
     memory = memory_load(
         memory, colour_map.start_address,
         (Word *)colours_bin, colours_bin_len);
+    printf("%x\n", char_map.start_address);
+    memory = memory_load(
+        memory, char_map.start_address,
+        (Word *)test_screen_bin, test_screen_bin_len);
 
     int x, y;
     Word current_word;
