@@ -23,12 +23,6 @@ int main(void) {
     SpriteMap sprite_map = sprite_map_new((Word)0x4000);
     MemoryMap colour_map = memory_map_new((Word)0x3500);
 
-    memory = memory_set(memory, char_map.start_address, 0x1600 + 'J');
-    memory = memory_set(memory, char_map.start_address + 1, 0x1600 + 'o');
-    memory = memory_set(memory, char_map.start_address + 2, 0x1600 + 'r');
-    memory = memory_set(memory, char_map.start_address + 3, 0x1600 + 'd');
-    memory = memory_set(memory, char_map.start_address + 4, 0x1600 + 'a');
-    memory = memory_set(memory, char_map.start_address + 5, 0x1600 + 'n');
     memory = memory_load(
         memory, sprite_map.start_address,
         (Word *)sprites_bin, sprites_bin_len);
