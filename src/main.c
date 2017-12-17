@@ -24,6 +24,7 @@ int main(void) {
         display, char_map.width * 4, char_map.height * 8);
     SpriteMap sprite_map = sprite_map_new((Word)0xFC70);
     MemoryMap colour_map = memory_map_new((Word)0xFE70);
+    Machine machine;
 
     memory = memory_load(
         memory, sprite_map.start_address,
@@ -39,8 +40,7 @@ int main(void) {
     int x, y;
     Word current_word;
     int foreground_colour, background_colour;
-    Word program_counter = 0x1000;
-    Word a, b, c;
+    machine = machine_new(memory, 0x1000);
 
     test();
 
@@ -49,17 +49,8 @@ int main(void) {
     for (;;) {
         SDL_PollEvent(&e);
 
-        a = memory_get(memory, program_counter);
-        b = memory_get(memory, program_counter + 1);
-        c = memory_get(memory, program_counter + 2);
-
-        memory = memory_set(memory, b, memory_get(memory, b) - memory_get(memory, a));
-
-        if (memory_get(memory, b) > 0) {
-            program_counter += 3;
-        } else {
-            program_counter = c;
-        }
+        machine = machine_execute(machine);
+        memory = machine.memory;
 
         if (e.type == SDL_QUIT) {
             break;
