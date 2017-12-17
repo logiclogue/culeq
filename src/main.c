@@ -18,11 +18,11 @@ void test(void);
 int main(void) {
     Display display = display_new();
     Memory memory = memory_new();
-    CharMap char_map = char_map_new((Word)0x3900, 32, 12);
+    CharMap char_map = char_map_new((Word)0xFE80, 32, 12);
     PixelDisplay pd = pixel_display_new(
         display, char_map.width * 4, char_map.height * 8);
-    SpriteMap sprite_map = sprite_map_new((Word)0x4000);
-    MemoryMap colour_map = memory_map_new((Word)0x3500);
+    SpriteMap sprite_map = sprite_map_new((Word)0xFC70);
+    MemoryMap colour_map = memory_map_new((Word)0xFE70);
 
     memory = memory_load(
         memory, sprite_map.start_address,
