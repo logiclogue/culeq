@@ -12,6 +12,7 @@
 #include "colours_bin.h"
 #include "sprites_bin.h"
 #include "test_screen_bin.h"
+#include "machine.h"
 
 void test(void);
 
@@ -100,6 +101,7 @@ void test(void) {
     memory_map_test();
     word_colour_test();
     word_char_test();
+    machine_test();
 
     printf("All tests pass :)\n");
 }
