@@ -12,7 +12,8 @@ The display is memory mapped.
 
 | Utility           | From   | To     |
 |-------------------|--------|--------|
-| Empty             | 0x0000 | 0xFC6F |
+| Null              | 0x0000 | 0x0000 |
+| User program/heap | 0x0001 | 0xFC6F |
 | Sprites           | 0xFC70 | 0xFE6F |
 | Colours           | 0xFE70 | 0xFE7F |
 | Character display | 0xFE80 | 0xFFFF |
@@ -51,7 +52,7 @@ The display is memory mapped.
 
 ### Default colour palette
 
-- There can be found hard-coded in `src/colours_bin.h`
+- These can be found hard-coded in `src/colours_bin.h`
 
 | Address | Word   | Description |
 |---------|--------|-------------|
@@ -72,4 +73,39 @@ The display is memory mapped.
 | 0xFE7E  | 0x8080 | Purple      |
 | 0xFE7F  | 0x0880 | Teal        |
 
+- You can override these colours with your own 12-bit colours
+
 ### Sprites
+
+- There are 256 sprites
+- There is 1 sprite for every ASCII character
+- Each sprite is 4x8 pixels
+- Each sprite requires 2 words in memory
+    - Because 1 word is 16-bits which can represent a 4x4 square
+- Sprites are indexed in memory by their respective ASCII character
+- Sprites exist between 0xFC70 and 0xFE6F in memory
+- Default sprites can be found in `src/sprites_bin.h`
+
+- Most of the sprites haven't been defined since it was taking me so long!
+
+#### Letter A example
+
+- Letter A
+
+```
+ *  - 4
+* * - A
+* * - A
+*** - E
+* * - A
+* * - A
+* * - A
+```
+
+- 1st word: `0x4AAE`
+- 2nd word: `0xAAA0`
+- Exists at 0xFCF2 (1st word) and 0xFCF3 (2st word)
+    - ASCII code 65 = 0x41
+    - 0xFC70 + (0x41 * 2)
+    - 0xFC70 + 0x82
+    - 0xFCF2
