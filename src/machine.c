@@ -14,7 +14,6 @@ Machine machine_execute(Machine machine) {
 
     Word mem_a = memory_get(machine.memory, a);
     Word mem_b = memory_get(machine.memory, b);
-    Word mem_c = memory_get(machine.memory, c);
 
     Word sub = mem_b - mem_a;
 

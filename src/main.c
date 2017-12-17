@@ -12,6 +12,7 @@
 #include "colours_bin.h"
 #include "sprites_bin.h"
 #include "test_screen_bin.h"
+#include "test_program_bin.h"
 #include "machine.h"
 
 void test(void);
@@ -24,6 +25,7 @@ int main(void) {
         display, char_map.width * 4, char_map.height * 8);
     SpriteMap sprite_map = sprite_map_new((Word)0xFC70);
     MemoryMap colour_map = memory_map_new((Word)0xFE70);
+    MemoryMap program_map = memory_map_new((Word)0x1000);
     Machine machine;
 
     memory = memory_load(
@@ -32,15 +34,18 @@ int main(void) {
     memory = memory_load(
         memory, colour_map.start_address,
         (Word *)colours_bin, colours_bin_len);
-    printf("%x\n", char_map.start_address);
     memory = memory_load(
         memory, char_map.start_address,
         (Word *)test_screen_bin, test_screen_bin_len);
+    memory = memory_load(
+        memory, program_map.start_address,
+        (Word *)test_program_bin, test_program_bin_len);
+    memory = memory_set(memory, 0, 0);
 
     int x, y;
     Word current_word;
     int foreground_colour, background_colour;
-    machine = machine_new(memory, 0x1000);
+    machine = machine_new(memory, program_map.start_address);
 
     test();
 
