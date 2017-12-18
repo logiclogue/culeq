@@ -43,6 +43,8 @@ void start(const char *file_name) {
 
     memory = memory_load_from_file(memory, file);
 
+    fclose(file);
+
     memory = memory_load(
         memory, sprite_map.start_address,
         (Word *)sprites_bin, sprites_bin_len);
@@ -52,9 +54,6 @@ void start(const char *file_name) {
     memory = memory_load(
         memory, char_map.start_address,
         (Word *)test_screen_bin, test_screen_bin_len);
-    memory = memory_load(
-        memory, program_map.start_address,
-        (Word *)test_program_bin, test_program_bin_len);
     memory = memory_set(memory, 0, 0);
 
     int x, y;
@@ -100,7 +99,6 @@ void start(const char *file_name) {
         pd.display = display_update(pd.display);
     }
 
-    fclose(file);
     display_destroy(display);
 }
 

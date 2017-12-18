@@ -43,9 +43,9 @@ Memory memory_load_from_file(Memory self, FILE *file) {
         address = i / 2;
 
         if (i % 2 == 0) {
-            self = memory_set(self, address, 0x0000 | c);
+            self = memory_set(self, address, c & 0x00FF);
         } else {
-            self = memory_set(self, address, (previous_c << 8) | c);
+            self = memory_set(self, address, (previous_c << 8) | (c & 0x00FF));
         }
 
         i += 1;
@@ -75,12 +75,14 @@ void memory_test(void) {
     assert(memory_get(memory, 0x42) == words[0]);
     assert(memory_get(memory, 0x43) == words[1]);
 
-    FILE *file = fopen("Makefile", "r");
+    FILE *file = fopen("examples/program.bin", "r");
 
     memory = memory_load_from_file(memory, file);
 
-    assert(memory_get(memory, 0) == 0x4343);
-    assert(memory_get(memory, 1) == 0x3D67);
+    assert(memory_get(memory, 0) == 0x0000);
+    assert(memory_get(memory, 1) == 0x0000);
+    assert(memory_get(memory, 2) == 0x0003);
+    assert((memory_get(memory, 3) & 0xFFFF) == 0xFE80);
 
     fclose(file);
 }
