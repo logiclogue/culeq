@@ -2,6 +2,7 @@
 #include "word.h"
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 Memory memory_new(void) {
     long size = 1 << (sizeof(Word) * 8);
@@ -32,6 +33,28 @@ Word memory_get(Memory self, Word address) {
     return self.array[address];
 }
 
+Memory memory_load_from_file(Memory self, FILE *file) {
+    char c;
+    char previous_c = '\0';
+    int i = 0;
+    Word address;
+
+    while ((c = fgetc(file)) != EOF) {
+        address = i / 2;
+
+        if (i % 2 == 0) {
+            self = memory_set(self, address, 0x0000 | c);
+        } else {
+            self = memory_set(self, address, (previous_c << 8) | c);
+        }
+
+        i += 1;
+        previous_c = c;
+    }
+
+    return self;
+}
+
 void memory_test(void) {
     Memory memory = memory_new();
 
@@ -51,4 +74,13 @@ void memory_test(void) {
 
     assert(memory_get(memory, 0x42) == words[0]);
     assert(memory_get(memory, 0x43) == words[1]);
+
+    FILE *file = fopen("Makefile", "r");
+
+    memory = memory_load_from_file(memory, file);
+
+    assert(memory_get(memory, 0) == 0x4343);
+    assert(memory_get(memory, 1) == 0x3D67);
+
+    fclose(file);
 }
