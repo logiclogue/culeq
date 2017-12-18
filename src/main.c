@@ -16,8 +16,19 @@
 #include "machine.h"
 
 void test(void);
+void start(void);
 
-int main(void) {
+int main(int argc, char **argv) {
+    if (argc == 2 && !strcmp(argv[1], "test")) {
+        test();
+    } else {
+        start();
+    }
+
+    return 0;
+}
+
+void start(void) {
     Display display = display_new();
     Memory memory = memory_new();
     CharMap char_map = char_map_new((Word)0xFE80, 32, 12);
@@ -86,8 +97,6 @@ int main(void) {
     }
 
     display_destroy(display);
-
-    return 0;
 }
 
 void test(void) {
