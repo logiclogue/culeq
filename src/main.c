@@ -36,7 +36,7 @@ void start(void) {
         display, char_map.width * 4, char_map.height * 8);
     SpriteMap sprite_map = sprite_map_new((Word)0xFC70);
     MemoryMap colour_map = memory_map_new((Word)0xFE70);
-    MemoryMap program_map = memory_map_new((Word)0x1000);
+    MemoryMap program_map = memory_map_new((Word)0x0000);
     Machine machine;
 
     memory = memory_load(
