@@ -16,19 +16,19 @@
 #include "machine.h"
 
 void test(void);
-void start(void);
+void start(const char *file_name);
 
 int main(int argc, char **argv) {
-    if (argc == 2 && !strcmp(argv[1], "test")) {
-        test();
+    if (argc == 2) {
+        start(argv[1]);
     } else {
-        start();
+        test();
     }
 
     return 0;
 }
 
-void start(void) {
+void start(const char *file_name) {
     Display display = display_new();
     Memory memory = memory_new();
     CharMap char_map = char_map_new((Word)0xFE80, 32, 12);
@@ -38,6 +38,10 @@ void start(void) {
     MemoryMap colour_map = memory_map_new((Word)0xFE70);
     MemoryMap program_map = memory_map_new((Word)0x0000);
     Machine machine;
+
+    FILE *file = fopen(file_name, "r");
+
+    memory = memory_load_from_file(memory, file);
 
     memory = memory_load(
         memory, sprite_map.start_address,
@@ -96,6 +100,7 @@ void start(void) {
         pd.display = display_update(pd.display);
     }
 
+    fclose(file);
     display_destroy(display);
 }
 
