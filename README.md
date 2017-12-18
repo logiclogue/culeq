@@ -8,6 +8,33 @@ Culeq has 64K words of directly addressable RAM, or 128Kb.
 
 The display is memory mapped.
 
+## Compiling
+
+```
+make
+```
+
+## Usage
+
+```
+./build/culeq [binary file]
+```
+
+## Example
+
+```
+./build/culeq examples/paint_screen.bin
+```
+
+- This program paints the screen pink
+- It shows how slow having 1 instruction is
+- Even on 8-bit computers of the 80s, we'd expect it to clear the screen almost
+  instantly
+
+- Unfortunately, I wasn't able to build any reasonable program for Culeq due to
+  the complexity of writing programs with 1 instruction
+- I hope this still demonstrates somewhat what it can do
+
 ## Memory Map
 
 | Utility           | From   | To     |
