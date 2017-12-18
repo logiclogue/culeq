@@ -35,6 +35,16 @@ make
   the complexity of writing programs with 1 instruction
 - I hope this still demonstrates somewhat what it can do
 
+- You can find other example programs in the `examples` directory
+
+## Tests
+
+- Run tests
+
+```
+./build/culeq
+```
+
 ## Memory Map
 
 | Utility           | From   | To     |
