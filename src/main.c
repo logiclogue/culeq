@@ -63,8 +63,6 @@ void start(const char *file_name) {
 
     SDL_Event e;
 
-    printf("HERE\n");
-
     for (;;) {
         SDL_PollEvent(&e);
 
