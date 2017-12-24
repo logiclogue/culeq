@@ -61,9 +61,9 @@ void start(const char *file_name) {
     int foreground_colour, background_colour;
     machine = machine_new(memory, program_map.start_address);
 
-    test();
-
     SDL_Event e;
+
+    printf("HERE\n");
 
     for (;;) {
         SDL_PollEvent(&e);
