@@ -146,3 +146,11 @@ make
     - 0xFC70 + (0x41 * 2)
     - 0xFC70 + 0x82
     - 0xFCF2
+
+## Author
+
+Jordan Lord
+
+## License
+
+GNU General Public License v3.0
