@@ -1,0 +1,19 @@
+void _print_char(int i, int c);
+void clear_screen(int i, int c);
+
+void _print_char(int i, int c) {
+    *(65152 + i) = 5632 + c;
+}
+
+void clear_screen() {
+    for (int i = 0; i < 384; i += 1) {
+        *(65152 + i) = 5632 + 'J';
+    }
+}
+
+int main() {
+    _print_char(10, 'Q');
+    clear_screen();
+
+    return 0;
+}
